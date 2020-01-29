@@ -1,0 +1,11 @@
+.book-title {
+    display: inline-block;
+}
+
+.view, .save {
+    float: right;
+}
+
+.book-description {
+    float: right;
+}

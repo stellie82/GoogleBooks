@@ -1,5 +1,5 @@
 import React from "react";
-// import "./style.css";
+import "./style.css";
 
 export function Input(props) {
     return (
@@ -11,8 +11,6 @@ export function Input(props) {
 
 export function SubmitBtn(props) {
     return (
-        <button {...props} style={{float: "right", marginBottom: 10}} className="btn btn-success">
-            {props.children}
-        </button>
+        <button {...props} className="btn btn-primary"></button>
     );
 }

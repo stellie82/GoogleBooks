@@ -3,14 +3,22 @@ import API from "../utils/API";
 import Container from "../components/Container";
 import Navbar from "../components/Navbar";
 import Jumbotron from "../components/Jumbotron";
-import SearchResults from "../components/SearchResults";
-import Card from "../components/Card";
 import {Input, SubmitBtn} from "../components/Form";
+import Results from "../components/Results";
+import Card from "../components/Card";
 
 class Search extends Component {
     state = {
         books: [],
         search: ""
+    };
+
+    searchBooks = () => {
+        API.googleBooks(this.state.search)
+            .then(res => this.setState({
+                books: res.data.items
+            }))
+            .catch(err => console.log(err));
     };
 
     handleInputChange = event => {
@@ -20,18 +28,29 @@ class Search extends Component {
         });
     };
 
-    handleFormSubmit = query => {
-        query.preventDefault();
-        API.googleBooks(query)
-            .then(res => this.setState({
-                books: res.data.items
-            }))
+    handleFormSubmit = event => {
+        event.preventDefault();
+        this.searchBooks();
+    };
+
+    saveGoogleBook = id => {
+        let book = this.state.books.find(book => book.id === id);
+        console.log(book);
+        API.saveBook({
+            id: book.id,
+            title: book.volumeInfo.title,
+            link: book.volumeInfo.previewLink,
+            authors: book.volumeInfo.authors,
+            image: book.volumeInfo.imageLinks.thumbnail,
+            description: book.volumeInfo.description
+        })
+            .then(res => this.searchBooks())
             .catch(err => console.log(err));
     };
 
     render() {
         return (
-            <Container fluid>
+            <Container>
                 <Navbar />
                 <Jumbotron />
                 <form>
@@ -47,22 +66,27 @@ class Search extends Component {
                         Submit
               </SubmitBtn>
                 </form>
-                <SearchResults
-                    books={this.state.books}>
-                    {this.state.books.map(book => (
-                        <Card
-                            id={book.id}
-                            title={book.volumeInfo.title}
-                            link={book.volumeInfo.previewLink}
-                            authors={book.volumeInfo.authors}
-                            image={book.volumeInfo.imageLinks.thumbnail}
-                            description={book.volumeInfo.description}
-                        />
-                    ))}
-                </SearchResults>
+                {this.state.books.length ? (
+                    <Results>
+                        <h4>Results</h4>
+                        {this.state.books.map(book => (
+                            <Card
+                                id={book.id}
+                                title={book.volumeInfo.title}
+                                link={book.volumeInfo.previewLink}
+                                authors={book.volumeInfo.authors}
+                                image={book.volumeInfo.imageLinks.thumbnail}
+                                description={book.volumeInfo.description}
+                                saveGoogleBook={this.saveGoogleBook}
+                            />
+                        ))}
+                    </Results>
+                ) : (
+                        <Results><h4><i>No results to display</i></h4></Results>
+                    )}
             </Container>
         );
     }
-}
+};
 
 export default Search;

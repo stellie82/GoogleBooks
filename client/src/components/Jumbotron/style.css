@@ -1,0 +1,12 @@
+.jumbotron {
+    margin: 0;
+    padding: 100px;
+    height: 400px;
+    background: url(./books.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-align: left;
+    color: white;
+}

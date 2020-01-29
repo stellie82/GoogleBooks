@@ -1,10 +1,11 @@
 import React from "react";
-// import "./style.css";
+import "./style.css";
 
-function Container() {
+function Container({children}) {
     return (
-        <div className="container-fluid"></div>
+        <div className="container-fluid">{children}</div>
     );
 }
 
 export default Container;
+
