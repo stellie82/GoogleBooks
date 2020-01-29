@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Saved from "./pages/Saved";
 import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
+import Navbar from "./components/Navbar";
+import Jumbotron from "./components/Jumbotron";
 
 function App() {
   return (
@@ -10,13 +12,11 @@ function App() {
       <div>
         <Navbar />
         <Jumbotron />
-        <Results>
-          <Switch>
-            <Route exact path="/" component={Search} />
-            <Route exact path="/saved" component={Saved} />
-            <Route component={NoMatch} />
-          </Switch>
-        </Results>
+        <Switch>
+          <Route exact path="/" component={Search} />
+          <Route exact path="/saved" component={Saved} />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
     </Router>
   );
