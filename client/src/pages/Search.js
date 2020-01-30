@@ -54,6 +54,7 @@ class Search extends Component {
                 <Navbar />
                 <Jumbotron />
                 <form>
+                    <h5>Search Form</h5>
                     <Input
                         value={this.state.search}
                         onChange={this.handleInputChange}
@@ -68,7 +69,7 @@ class Search extends Component {
                 </form>
                 {this.state.books.length ? (
                     <Results>
-                        <h4>Results</h4>
+                        <h5>Results</h5>
                         {this.state.books.map(book => (
                             <Card
                                 id={book.id}
@@ -82,7 +83,7 @@ class Search extends Component {
                         ))}
                     </Results>
                 ) : (
-                        <Results><h4><i>No results to display</i></h4></Results>
+                        <Results><h5><i>No results to display</i></h5></Results>
                     )}
             </Container>
         );

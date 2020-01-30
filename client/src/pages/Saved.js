@@ -36,7 +36,7 @@ class Saved extends Component {
                 <Jumbotron />
                 {this.state.books.length ? (
                     <Results>
-                        <h4>Saved Books</h4>
+                        <h5>Saved Books</h5>
                         {this.state.books.map(book => (
                             <SavedCard
                                 id={book._id}
@@ -50,7 +50,7 @@ class Saved extends Component {
                         ))}
                     </Results>
                 ) : (
-                        <Results><h4><i>There are no books saved</i></h4></Results>
+                        <Results><h5><i>There are no books saved</i></h5></Results>
                     )}
             </Container>
         );
