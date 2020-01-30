@@ -16,7 +16,8 @@ class Search extends Component {
     searchBooks = () => {
         API.googleBooks(this.state.search)
             .then(res => this.setState({
-                books: res.data.items
+                books: res.data.items,
+                search: ""
             }))
             .catch(err => console.log(err));
     };
@@ -41,7 +42,7 @@ class Search extends Component {
             title: book.volumeInfo.title,
             link: book.volumeInfo.previewLink,
             authors: book.volumeInfo.authors,
-            image: book.volumeInfo.imageLinks.thumbnail,
+            image: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://go-gae-image-api-example-dot-gae-lab-001.appspot.com/img?f=img-api-example/2.jpg",
             description: book.volumeInfo.description
         })
             .then(res => this.searchBooks())
@@ -76,7 +77,7 @@ class Search extends Component {
                                 title={book.volumeInfo.title}
                                 link={book.volumeInfo.previewLink}
                                 authors={book.volumeInfo.authors}
-                                image={book.volumeInfo.imageLinks.thumbnail}
+                                image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://go-gae-image-api-example-dot-gae-lab-001.appspot.com/img?f=img-api-example/2.jpg"}
                                 description={book.volumeInfo.description}
                                 saveGoogleBook={this.saveGoogleBook}
                             />
