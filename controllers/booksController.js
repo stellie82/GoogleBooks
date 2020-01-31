@@ -1,3 +1,4 @@
+// Required files
 const db = require("../models");
 
 // Methods for controller

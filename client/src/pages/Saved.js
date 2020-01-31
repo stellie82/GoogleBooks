@@ -1,3 +1,4 @@
+// Required modules and files
 import React, {Component} from "react";
 import API from "../utils/API";
 import Container from "../components/Container";
@@ -15,6 +16,7 @@ class Saved extends Component {
         this.loadBooks();
     }
 
+    // Create function to load saved books from DB
     loadBooks = () => {
         API.getBooks()
             .then(res =>
@@ -23,12 +25,14 @@ class Saved extends Component {
             .catch(err => console.log(err));
     };
 
+    // Create function to delete saved book from DB using ID
     deleteBook = id => {
         API.deleteBook(id)
             .then(res => this.loadBooks())
             .catch(err => console.log(err));
     };
 
+    // Render Saved List page
     render() {
         return (
             <Container>

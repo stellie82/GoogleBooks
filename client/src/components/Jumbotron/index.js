@@ -1,3 +1,4 @@
+// Required modules and files
 import React from "react";
 import "./style.css";
 

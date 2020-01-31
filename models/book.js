@@ -6,6 +6,7 @@
 // link - The Book's information link as returned from the Google Books API
 // Creating documents in your books collection similar to the following:
 
+// Required modules and files
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

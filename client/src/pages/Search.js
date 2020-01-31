@@ -1,3 +1,4 @@
+// Required modules and files
 import React, {Component} from "react";
 import API from "../utils/API";
 import Container from "../components/Container";
@@ -13,6 +14,7 @@ class Search extends Component {
         search: ""
     };
 
+    // Create function to search for books through Google API
     searchBooks = () => {
         API.googleBooks(this.state.search)
             .then(res => this.setState({
@@ -22,6 +24,7 @@ class Search extends Component {
             .catch(err => console.log(err));
     };
 
+    // Create function to handle input data
     handleInputChange = event => {
         const {name, value} = event.target;
         this.setState({
@@ -29,11 +32,13 @@ class Search extends Component {
         });
     };
 
+    // Create function to handle form data submission
     handleFormSubmit = event => {
         event.preventDefault();
         this.searchBooks();
     };
 
+    // Create function to save book to Saved List
     saveGoogleBook = id => {
         let book = this.state.books.find(book => book.id === id);
         console.log(book);
@@ -49,6 +54,7 @@ class Search extends Component {
             .catch(err => console.log(err));
     };
 
+    // Render Search page
     render() {
         return (
             <Container>
